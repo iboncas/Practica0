@@ -15,6 +15,7 @@ public class ColoniaAbejas extends ElementoEcosistema implements Evolucionable{
 	private Point punto;
 	private Dimension tamaño;
 	private JPanel panel = null;
+	private JLabel labPob = new JLabel("", SwingConstants.CENTER);
 	
 	public ColoniaAbejas(String titulo, int x, int y, int ancho, int alto) {
 		this.titulo = titulo;
@@ -47,6 +48,7 @@ public class ColoniaAbejas extends ElementoEcosistema implements Evolucionable{
 		 if (numFlores < 50) factorCrecimiento *= 0.1; // Insuficientes flores mata
 		 	poblacion = (long) (poblacion * factorCrecimiento * dias);
 		 if (poblacion > 5000) poblacion = 5000; // Límite de población
+		 labPob.setText(poblacion+"");
 		}	
 	@Override
 	public String toString() {
@@ -60,7 +62,8 @@ public class ColoniaAbejas extends ElementoEcosistema implements Evolucionable{
 			this.panel = new JPanel();
 			this.panel.setLayout(new BorderLayout());
 			this.panel.add(new JLabel(titulo + "\n", SwingConstants.CENTER), BorderLayout.NORTH);
-			this.panel.add(new JLabel(poblacion + "", SwingConstants.CENTER), BorderLayout.CENTER);
+			this.panel.add(labPob, BorderLayout.CENTER);
+			labPob.setText(poblacion+"");
 			this.panel.add(new JLabel(""), BorderLayout.SOUTH);
 			this.panel.setLocation(punto);
 			this.panel.setSize(tamaño);

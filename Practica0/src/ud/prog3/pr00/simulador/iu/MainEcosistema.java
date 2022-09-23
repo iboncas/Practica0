@@ -13,10 +13,11 @@ public class MainEcosistema extends JFrame{
 	public MainEcosistema() {
 		this.setSize(800, 600);
 		this.setLocation(225, 50);
+		this.setTitle("Ecosistema");
 		
 		this.pCentral = new JPanel();
 		pCentral.setLayout(null);
-		this.add(pCentral, "Center");
+		this.add(pCentral, BorderLayout.CENTER);
 		JPanel pBotonera = new JPanel();
 		JToggleButton bMover = new JToggleButton("Mover");
 		JToggleButton bCrear = new JToggleButton("Crear");
@@ -58,7 +59,9 @@ public class MainEcosistema extends JFrame{
 					hilo.start();
 				}else if(bVida.getText().equals("Parar")) {
 					bVida.setText("Vida");
-					hilo.kill();
+					if(hilo != null) {
+						hilo.kill();
+					}
 				}
 			}
 		});
@@ -96,7 +99,6 @@ public class MainEcosistema extends JFrame{
 						if(el.getPanel().getBounds().contains(coordPulsa)) {
 							el.getPanel().setLocation(coordSuelta);
 							MainEcosistema.this.pCentral.add(el.getPanel());
-							MainEcosistema.this.pCentral.revalidate();
 							break;
 						}
 					}
@@ -133,8 +135,8 @@ public class MainEcosistema extends JFrame{
 						ev.evoluciona(1);
 					}
 				}
-				MainEcosistema.this.pCentral.validate();
-		}
+				pCentral.validate();
+			}
 		}
 		public void kill() {
 			activo = false;

@@ -9,6 +9,7 @@ public class PlantacionFlores extends ElementoEcosistema implements Evolucionabl
 	private Point punto;
 	private Dimension tamaño;
 	private JPanel panel = null;
+	private JLabel labCant = new JLabel("", SwingConstants.CENTER);
 	
 	public PlantacionFlores(String titulo, int x, int y, int ancho, int alto) {
 		this.titulo = titulo;
@@ -38,6 +39,7 @@ public class PlantacionFlores extends ElementoEcosistema implements Evolucionabl
 			}
 			cantidad = (long) (cantidad * factorCrecimiento * dias);
 			if (cantidad > 5000) cantidad = 5000; 
+			labCant.setText(""+cantidad);
 		}
 	@Override
 	public String toString() {
@@ -51,7 +53,8 @@ public class PlantacionFlores extends ElementoEcosistema implements Evolucionabl
 			this.panel = new JPanel();
 			this.panel.setLayout(new BorderLayout());
 			this.panel.add(new JLabel(titulo + "\n", SwingConstants.CENTER), BorderLayout.NORTH);
-			this.panel.add(new JLabel(cantidad + "", SwingConstants.CENTER), BorderLayout.CENTER);
+			this.panel.add(labCant, BorderLayout.CENTER);
+			labCant.setText(cantidad+"");
 			this.panel.add(new JLabel(""), BorderLayout.SOUTH);
 			this.panel.setLocation(punto);
 			this.panel.setSize(tamaño);
